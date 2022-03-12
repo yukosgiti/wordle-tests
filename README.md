@@ -1,17 +1,23 @@
 # Wordle Tests
 
-[Wordle Tests](https://link) lists all possible word-guess combinations.
+[Wordle Tests](https://github.com/yukosgiti/wordle-tests) is a set of comprehensive tests for a guesser function for the game Wordle.
 
-Each line follows the template: `<word1>,<result>,<word2>`
+---
+## [tests.txt](https://github.com/yukosgiti/wordle-tests/blob/main/data/tests.txt)
+Each line follows the template: `<word1>,<word2>,<result>`
 
-| key      | value                                           |
+|  |                                            |
 | -------- | ----------------------------------------------- |
 | `word1`  | Base word.                                      |
-| `result` | Output of a guess made by `word2` onto `word1`. |
 | `word2`  | Guess to be made onto `word1` to get `result`.  |
-|          | `*` implies no word gives that result.          |
+| `result` | Output of a guess made by `word2` onto `word1`. |
 
-## Generating Base Words
+
+
+---
+
+## [base_words.txt](https://github.com/yukosgiti/wordle-tests/blob/main/data/base_words.txt)
+Each line follows the template: `<word>`
 
 A 5 letter word can consist of 1-5 unique letters. Below, you can find all 52 lexicographically ordered possibilities. Every 5 letter word after lexicographically ordering is one of the values below.
 
@@ -27,14 +33,24 @@ A 5 letter word can consist of 1-5 unique letters. Below, you can find all 52 le
 | 4   | `<2,1,1,1,0>` | `aabcd`, `abacd`, `abbcd`, `abcad`, `abcbd`, `abccd`, `abcda`, `abcdb`, `abcdc`, `abcdd`                                              |
 | 5   | `<1,1,1,1,1>` | `abcde`                                                                                                                               |
 
+
 \*_ULC: Unique Letter Count_
 
-## Generating Possible Results
+---
 
-Similarly, the result of a guess is a subset of all possibilities between `ccccc` to `wwwww`.
+## [possible_results.txt](https://github.com/yukosgiti/wordle-tests/blob/main/data/possible_results.txt)
+Each line follows the template: `<result>`
 
-Some of them are impossible such as `ccccm`.
+The result is all possibilities between `ccccc` to `wwwww`. (Also contains invalid results.)
+
+---
+
+## [impossible_results.txt](https://github.com/yukosgiti/wordle-tests/blob/main/data/impossible_results.txt)
+Each line follows the template: `<word>,<result>`
+
+Not all possible results are valid. For example it is impossible to get `ccccm` as a result. 
 
 Sometimes, some results are not possible for a given word. For example, `abcca` can never have a guess result with `mcccw`.
 
-When generating the tests, all possibilities are considered, even the impossible ones so that there are edge cases in the tests.
+So each line can be interpreted as there are no matches for `word` to obtain `result`.
+
